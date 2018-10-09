@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>document</title>
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+   <div class="title">
+       <span><a href="../index.html">中国新闻网</a></span>
+   </div>
+    <div id="app">
+        <div class="header">
+            <h1 class="text-center">新闻后台管理系统</h1>
+        </div>
+        <div class="container clearfix" style="margin:30px 0">
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">添加新闻</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLabel">创建一个新闻</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="control-label">请输入标题</label>
+                                    <input type="text" class="form-control" id="recipient-name" v-model='tit'>
+                                </div>
+                                   
+                                <div class="form-group">
+                                    <label for="recipient-name" class="control-label">请输入作者</label>
+                                    <input type="text" class="form-control" id="recipient-name" v-model='zuoz'>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="control-label">请输入内容</label>
+                                    <textarea class="form-control" id="message-text" v-model='test'></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="control-label">请选择分类</label>
+                                     <select id="basic" class="form-control" v-model='fenlei'>
+                                            <option>体育</option>
+                                            <option>科技</option>
+                                            <option>娱乐</option>   
+                                    </select>
+                                </div>
+                                
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" @click='guanbi'>关闭</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" @click='add'>提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container bg">
+            <div class="row">
+                <div class="col-md-1 btn-dark">id</div>
+                <div class="col-md-1 btn-dark">标签</div>
+                <div class="col-md-2 btn-dark">标题</div>
+                <div class="col-md-2 btn-dark">作者</div>
+                <div class="col-md-2 btn-dark">时间</div>
+                <div class="col-md-2 btn-dark">状态</div>
+                <div class="col-md-2 btn-dark">操作</div>
+            </div>
+            <ul class="row zts" v-for='(list,index) in lists'>
+                <li class="col-md-1 text-center">{{index+1}}</li>
+                <li class="col-md-1 text-center">{{list.bar}}</li>
+                <li class="col-md-2">{{list.title}}</li>
+                <li class="col-md-2 text-center">{{list.zz}}</li>
+                <li class="col-md-2">{{list.time}}</li>
+                <li class="col-md-2"><button type="button" class="btn btn-light bn" @click="gb(index)">{{list.btm}}</button></li>
+                <li class="col-md-2"><button type="button" class="btn btn-primary" id='btm' data-toggle="modal" data-target="#examp" @click='addss(index)'>编辑</button>
+                    <div class="modal fade" id="examp" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="control-label">修改标题</label>
+                                            <input type="text" class="form-control" id="recipient-name" v-model='tit'>
+                                        </div>
+                                        <div class="form-group">
+                                    <label for="recipient-name" class="control-label">请输入作者</label>
+                                    <input type="text" class="form-control" id="recipient-name" v-model='zuoz'>
+                                </div>
+                                        <div class="form-group">
+                                            <label for="message-text" class="control-label">修改内容</label>
+                                            <textarea class="form-control" id="message-text" v-model='test'></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                        <label for="message-text" class="control-label">请修改分类</label>
+                                         <select id="basic farm" class="form-control"  v-model='fen'>
+                                            <option>体育</option>
+                                            <option>科技</option>
+                                            <option>娱乐</option>   
+                                        </select>
+                                </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" @click='guanbi'>关闭</button>
+                                    <button id='btn' type="button" class="btn btn-primary" data-dismiss="modal">提交</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-danger de" @click="dele(index)">删除</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.22.1/moment.js"></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.22.1/locale/zh-cn.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.js"></script>
+    <script src="../js/index.js"></script>
+</body>
+
+</html>

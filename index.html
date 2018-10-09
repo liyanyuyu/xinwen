@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body{
+            background: url(./img/bg.jpg) no-repeat;
+            background-size: cover;
+        }
+        li{
+            background: #eee;
+        }
+        .row{
+            display: flex;
+        }
+        .bg{
+            width: 100%;
+            height: 330px;
+            background: url(./img/2.png) no-repeat;
+            background-size: cover;
+            border-bottom: 2px solid red;
+        }
+        .cols{
+            width: 33.3%;
+            flex-direction: row-reverse;
+        }
+        .cols p{
+            font-size: 16px;
+            padding: 0 15px;
+           padding-bottom: 20px;
+        }
+        ul{
+            border-bottom:2px solid #909090;
+        }
+        ul,p{
+            margin: 0;
+        }
+        span{
+            color: aliceblue;
+            padding-left: 10px;
+            line-height:40px;
+        }
+        .cols{
+            padding: 10px 15px;
+            height:800px;
+        }
+        .footer{
+            height: 200px;
+            background: url(img/3.png) no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+   <div class="header">
+       <a href="./admin/index.html"><img src="./img/1.png" alt=""></a>
+       <div class="container bg">
+       </div>
+   </div>
+   
+    <div id="app">
+        <div class="container" style="background:white">
+           <div class="row">
+             <div class="cols">
+                 <div class="title" style="background:red">
+                     <span>科技热点</span>
+                 </div>
+                  <ul v-for='note in notes'>
+                <li  v-if="note.bar=='科技' &&note.zt==true">
+                    <h4 class="text-center"> <a href="">{{note.title}}</a></h4>
+                    <p href="#">{{note.text}}</p>
+                </li>
+                </ul>
+              </div>
+             
+              <div class="cols">
+                 <div class="title" style="background:red">
+                     <span>体育热点</span>
+                 </div>
+                  <ul v-for='note in notes'>
+                <li  v-if="note.bar=='体育' &&note.zt==true">
+                    <h4 class="text-center"> <a href="">{{note.title}}</a></h4>
+                    <p href="#">{{note.text}}</p>
+                </li>
+                </ul>
+              </div>
+              <div class="cols">
+                  <div class="title" style="background:red">
+                     <span>娱乐热点</span>
+                 </div>
+                  <ul v-for='note in notes'>
+                <li  v-if="note.bar=='娱乐' &&note.zt==true">
+                    <h4 class="text-center"> <a href="">{{note.title}}</a></h4>
+                    <p href="#">{{note.text}}</p>
+                </li>
+                </ul>
+              </div>
+              </div>
+           </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+             data:{
+                notes:''
+            },
+            created:function(){
+        //浏览器打开的时候赋值本地存储的值
+            if(this.notes !==null){
+            this.notes = JSON.parse(localStorage.getItem('notes'));
+        }
+        
+    }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+*{margin:0;padding:0;list-style:none}
+body{background:url(../img/timg.jpg) no-repeat 0 -100px;background-size:cover}
+.header{margin:50px auto}
+.btn-dark{padding:10px;border:1px solid white;box-sizing:border-box}
+.btn-light:focus,.btn-light.focus{box-shadow:0 0 0 0}
+.btn-light{border:0}
+.btn-info{margin:20px}
+.zts .col-md-1,.zts .col-md-2{padding:5px}
+.zts .btn{font-size:14px;margin:0 10px}
+ul li{border:1px solid #9b9b9b;box-sizing:border-box}
+.bg{background:rgba(255,255,255,0.5)}
+ul{margin:0}
+.zts button{float:left}
+.title{background:black;opacity:0.5}
+.title span{color:white;line-height:40px;padding-left:30px}
